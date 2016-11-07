@@ -1,0 +1,2 @@
+configurations.create("default")
+artifacts.add("default", file('ormlite-android-5.0.jar'))

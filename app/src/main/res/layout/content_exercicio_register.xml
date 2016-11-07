@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_exercicio_register"
+    tools:context="br.com.newkeepinshape.activity.exercicio.ExercicioRegister">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Nome:"
+        android:id="@+id/nome_exercicio"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_nome_exercicio"
+        android:layout_below="@+id/nome_exercicio"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Peso"
+        android:id="@+id/peso_exercicio"
+        android:layout_below="@+id/edt_nome_exercicio"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_peso_exercicio"
+        android:layout_below="@+id/peso_exercicio"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:numeric="decimal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Quantidade"
+        android:id="@+id/quantidade_exercicio"
+        android:layout_below="@+id/edt_peso_exercicio"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_quantidade_exercicio"
+        android:layout_below="@+id/quantidade_exercicio"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:numeric="integer" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Pontuação:"
+        android:id="@+id/pontuacao_exercicio"
+        android:layout_below="@+id/edt_quantidade_exercicio"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edt_pontuacao_exercicio"
+        android:layout_below="@+id/pontuacao_exercicio"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:numeric="decimal" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar"
+        android:id="@+id/btnSalvarTreino"
+        android:layout_below="@+id/edt_pontuacao_exercicio"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:onClick="salvarTreino" />
+
+</RelativeLayout>

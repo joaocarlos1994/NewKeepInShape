@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/NewKeepInShape.iml" filepath="$PROJECT_DIR$/NewKeepInShape.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ormlite-android-5.0/ormlite-android-5.0.iml" filepath="$PROJECT_DIR$/ormlite-android-5.0/ormlite-android-5.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ormlite-core-5.0/ormlite-core-5.0.iml" filepath="$PROJECT_DIR$/ormlite-core-5.0/ormlite-core-5.0.iml" />
+    </modules>
+  </component>
+</project>
