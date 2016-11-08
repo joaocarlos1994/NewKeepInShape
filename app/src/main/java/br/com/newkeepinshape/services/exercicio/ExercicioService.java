@@ -28,9 +28,6 @@ public class ExercicioService {
     public void saveExercicio(final EditText nomeText, final EditText pesoText, final EditText quantidadeText, final EditText pontuacaoText) throws SQLException {
 
         String nome = nomeText.getText().toString();
-
-        System.out.println(pesoText.getText().toString());
-
         double peso = Double.parseDouble(pesoText.getText().toString());
         int quantidade = Integer.parseInt(quantidadeText.getText().toString());
         double pontuacao = Double.parseDouble(pontuacaoText.getText().toString());
