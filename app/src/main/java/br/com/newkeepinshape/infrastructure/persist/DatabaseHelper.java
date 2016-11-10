@@ -21,7 +21,7 @@ import br.com.newkeepinshape.domain.treino.Treino;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final String NAME_BD = "keep-in-shape.db";
-    private static final int  VERSION_BD = 2;
+    private static final int  VERSION_BD = 3;
 
 
     public DatabaseHelper(final Context context) {

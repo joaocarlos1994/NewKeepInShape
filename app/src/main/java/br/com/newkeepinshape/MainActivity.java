@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import br.com.newkeepinshape.activity.exercicio.ExercicioRegister;
+import br.com.newkeepinshape.activity.exercicio.ExericioLista;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,9 +23,12 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-
     public void registerHandler(final View view){
         startActivity(new Intent(this, ExercicioRegister.class));
+    }
+
+    public void handlerListaExercicios(final View view) {
+        startActivity(new Intent(this, ExericioLista.class));
     }
 
 

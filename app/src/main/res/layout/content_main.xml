@@ -22,4 +22,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="56dp"
         android:onClick="registerHandler" />
+
+    <Button
+        android:text="Lista de Exercicios"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:id="@+id/btnExerciciosList"
+        android:onClick="handlerListaExercicios" />
+
 </RelativeLayout>
