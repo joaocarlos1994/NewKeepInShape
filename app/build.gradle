@@ -26,4 +26,8 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile project(':ormlite-android-5.0')
     compile project(':ormlite-core-5.0')
+    compile project(':lib')
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile 'junit:junit:4.12'
+    androidTestCompile 'junit:junit:4.12'
 }
