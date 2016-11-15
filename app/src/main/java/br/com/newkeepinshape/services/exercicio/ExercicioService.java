@@ -1,8 +1,8 @@
 package br.com.newkeepinshape.services.exercicio;
 
 import android.widget.EditText;
+import android.widget.TextView;
 
-import java.sql.SQLException;
 import java.util.Collection;
 
 import br.com.newkeepinshape.domain.exercicio.Exercicio;
@@ -15,7 +15,6 @@ import br.com.newkeepinshape.domain.exercicio.ExercicioRepository;
 public class ExercicioService {
 
     private final ExercicioRepository exercicioRepository;
-    private Exercicio exercicio;
 
     private ExercicioService(final ExercicioRepository exercicioDao){
         this.exercicioRepository = exercicioDao;
@@ -25,30 +24,41 @@ public class ExercicioService {
         return new ExercicioService(exercicioDao);
     }
 
-    public void saveExercicio(final EditText nomeText, final EditText pesoText, final EditText quantidadeText, final EditText pontuacaoText) throws SQLException {
+    public void salvarOuAtualizarExercicio(final TextView idTxtView, final EditText nomeText, final EditText pesoText, final EditText quantidadeText, final EditText pontuacaoText) {
 
-        String nome = nomeText.getText().toString();
-        double peso = Double.parseDouble(pesoText.getText().toString());
-        int quantidade = Integer.parseInt(quantidadeText.getText().toString());
-        double pontuacao = Double.parseDouble(pontuacaoText.getText().toString());
+        final Integer id = Integer.parseInt(idTxtView.getText().toString());
+        final String nome = nomeText.getText().toString();
+        final double peso = Double.parseDouble(pesoText.getText().toString());
+        final int quantidade = Integer.parseInt(quantidadeText.getText().toString());
+        final double pontuacao = Double.parseDouble(pontuacaoText.getText().toString());
 
-        exercicio = Exercicio.valueOfExercico(nome, peso, quantidade, pontuacao);
-        saveExercicio(exercicio);
+        final Exercicio exercicio = Exercicio.valueOfExercico(id, nome, peso, quantidade, pontuacao);
+
+
+        if (id == null) {
+            saveExercicio(exercicio);
+        } else {
+            atualizarExercicio(exercicio);
+        }
     }
 
-    public void deleteExercicio(final Integer id) throws SQLException {
+    private void atualizarExercicio(final Exercicio exercicio) {
+        exercicioRepository.atualizarExercicio(exercicio);
+    }
+
+    public void deleteExercicio(final Integer id) {
         exercicioRepository.deleteExercicio(id);
     }
 
-    public Collection<Exercicio> listAllExercicio() throws SQLException {
+    public Collection<Exercicio> listAllExercicio() {
         return exercicioRepository.listAllExercicio();
     }
 
-    public Exercicio returnExercicio(final Integer id) throws SQLException {
+    public Exercicio returnExercicio(final Integer id) {
         return exercicioRepository.findExercicio(id);
     }
 
-    private void saveExercicio(final Exercicio exercicio) throws SQLException {
+    private void saveExercicio(final Exercicio exercicio) {
         exercicioRepository.createExercicio(exercicio);
     }
 

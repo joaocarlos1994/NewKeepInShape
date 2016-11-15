@@ -21,10 +21,14 @@
         <activity
             android:name=".activity.exercicio.ExercicioRegister"
             android:label="@string/title_activity_exercicio_register"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.exercicio.ExericioLista"
             android:label="@string/title_activity_exericio_lista"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.exercicio.ExercicioEspecificacao"
+            android:label="@string/title_activity_exercicio"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

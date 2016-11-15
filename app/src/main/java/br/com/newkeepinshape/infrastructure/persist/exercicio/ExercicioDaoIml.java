@@ -5,6 +5,8 @@ import android.content.Context;
 import com.j256.ormlite.dao.BaseDaoImpl;
 
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import br.com.newkeepinshape.domain.exercicio.Exercicio;
@@ -24,22 +26,57 @@ public class ExercicioDaoIml extends BaseDaoImpl<Exercicio, Integer> implements 
     }
 
     @Override
-    public int createExercicio(Exercicio exercicio) throws SQLException {
-        return super.create(exercicio);
+    public int createExercicio(Exercicio exercicio) {
+        try {
+            return super.create(exercicio);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        throw new IllegalArgumentException("Erro ao criar Exercicio");
     }
 
     @Override
-    public int deleteExercicio(Integer id) throws SQLException {
-        return super.deleteById(id);
+    public int deleteExercicio(Integer id) {
+        try {
+            return super.deleteById(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        throw new IllegalArgumentException("Erro ao deletar Exercicio");
     }
 
     @Override
-    public Exercicio findExercicio(Integer id) throws SQLException {
-        return super.queryForId(id);
+    public int atualizarExercicio(Exercicio exercicio) {
+        try {
+            return super.update(exercicio);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        throw new IllegalArgumentException("Erro ao atualizar Exercicio");
     }
 
     @Override
-    public List<Exercicio> listAllExercicio() throws SQLException {
-        return super.queryForAll();
+    public Exercicio findExercicio(Integer id) {
+        List exercicios;
+        try {
+            return super.queryForId(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        throw new IllegalArgumentException("Erro ao buscar Exercicio");
+    }
+
+    @Override
+    public List<Exercicio> listAllExercicio() {
+
+        try {
+            final List<Exercicio> exercicios = super.queryForAll();
+            Collections.sort(exercicios);
+            return Collections.unmodifiableList(exercicios);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        throw new IllegalArgumentException("Erro ao listar os Exercicios");
     }
 }

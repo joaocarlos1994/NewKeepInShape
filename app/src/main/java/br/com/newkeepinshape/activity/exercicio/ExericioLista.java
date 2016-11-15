@@ -2,11 +2,16 @@ package br.com.newkeepinshape.activity.exercicio;
 
 import android.app.ListActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.View;
 import android.widget.ListAdapter;
 
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.sql.SQLException;
@@ -34,7 +39,7 @@ public class ExericioLista extends ListActivity {
 
             exercicioService = ExercicioService.valueOfExercicioService(new ExercicioDaoIml(this));
             final ListAdapter adapter = new SimpleAdapter(this, getExercicios(), R.layout.row_exercicio_layout,
-                    new String[] {"Nome", "Peso"}, new int [] {R.id.exercicoNome, R.id.exercicioPeso});
+                    new String[] {"id", "Nome", "Peso"}, new int [] {R.id.idExercicio, R.id.exercicoNome, R.id.exercicioPeso});
 
             setListAdapter(adapter);
 
@@ -44,13 +49,28 @@ public class ExericioLista extends ListActivity {
 
     }
 
-    private List<Map<String, String>> getExercicios() throws SQLException {
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        final View view = v;
+        final TextView textView = (TextView) view.findViewById(R.id.idExercicio);
+
+
+        Intent i = new Intent(this, ExercicioEspecificacao.class);
+        i.putExtra("ID",textView.getText());
+        startActivity(i);
+
+    }
+
+    private List<Map<String, String>> getExercicios() {
 
         final List<Map<String, String>> datas = new ArrayList<>();
         final List<Exercicio> exercicios = new ArrayList<>(exercicioService.listAllExercicio());
 
         for (Exercicio exercicio : exercicios) {
             final Map<String, String> exercicioData = new WeakHashMap<>();
+            exercicioData.put("id", exercicio.get_id().toString());
             exercicioData.put("Nome", exercicio.getNome());
             exercicioData.put("Peso", Double.toString(exercicio.getPeso()));
             datas.add(exercicioData);

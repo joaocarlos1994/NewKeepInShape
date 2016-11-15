@@ -10,7 +10,7 @@ import br.com.newkeepinshape.domain.treino.Treino;
  * Created by root on 05/10/16.
  */
 @DatabaseTable(tableName = "Exercicio")
-public class Exercicio {
+public final class Exercicio implements Comparable {
     @DatabaseField(generatedId = true)
     private Integer _id;
     @DatabaseField
@@ -24,15 +24,16 @@ public class Exercicio {
     @DatabaseField(foreign = true)
     private Treino treino;
 
-    private Exercicio(final String nome, final double peso, final int quantidade, final double pontuacao){
+    private Exercicio(final Integer id, final String nome, final double peso, final int quantidade, final double pontuacao){
+        this._id = id;
         this.nome = nome;
         this.peso = peso;
         this.quantidade = quantidade;
         this.pontuacao = pontuacao;
     }
 
-    public static Exercicio valueOfExercico(final String nome, final double peso, final int quantidade, final double pontuacao){
-        return new Exercicio(nome, peso, quantidade, pontuacao);
+    public static Exercicio valueOfExercico(final Integer id, final String nome, final double peso, final int quantidade, final double pontuacao){
+        return new Exercicio(id, nome, peso, quantidade, pontuacao);
     }
 
     public Exercicio() {
@@ -60,5 +61,11 @@ public class Exercicio {
 
     public void adicionarTreino(final Treino treino){
         this.treino = treino;
+    }
+
+    @Override
+    public int compareTo(final Object object) {
+        final Exercicio otherExercicio = (Exercicio) object;
+        return getNome().compareTo(otherExercicio.getNome());
     }
 }

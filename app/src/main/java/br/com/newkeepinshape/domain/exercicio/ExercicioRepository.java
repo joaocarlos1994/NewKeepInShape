@@ -9,9 +9,10 @@ import java.util.List;
  */
 public interface ExercicioRepository {
 
-    public int createExercicio(final Exercicio exercicio) throws SQLException;
-    public int deleteExercicio(final Integer id) throws SQLException;
-    public Exercicio findExercicio(final Integer id) throws SQLException;
-    public List<Exercicio> listAllExercicio() throws SQLException;
+    public int createExercicio(final Exercicio exercicio);
+    public int deleteExercicio(final Integer id);
+    public int atualizarExercicio(final Exercicio exercicio);
+    public Exercicio findExercicio(final Integer id);
+    public List<Exercicio> listAllExercicio();
 
 }
