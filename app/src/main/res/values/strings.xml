@@ -4,4 +4,5 @@
     <string name="title_activity_exercicio_register">ExercicioRegister</string>
     <string name="title_activity_exericio_lista">ExericioLista</string>
     <string name="title_activity_exercicio">Exercicio</string>
+    <string name="title_activity_treino_register">TreinoRegister</string>
 </resources>

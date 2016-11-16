@@ -38,7 +38,7 @@ public class ExericioLista extends ListActivity {
         try {
 
             exercicioService = ExercicioService.valueOfExercicioService(new ExercicioDaoIml(this));
-            final ListAdapter adapter = new SimpleAdapter(this, getExercicios(), R.layout.row_exercicio_layout,
+            final ListAdapter adapter = new SimpleAdapter(this, exercicioService.getExercicioCursor(), R.layout.row_exercicio_layout,
                     new String[] {"id", "Nome", "Peso"}, new int [] {R.id.idExercicio, R.id.exercicoNome, R.id.exercicioPeso});
 
             setListAdapter(adapter);
@@ -63,21 +63,5 @@ public class ExericioLista extends ListActivity {
 
     }
 
-    private List<Map<String, String>> getExercicios() {
-
-        final List<Map<String, String>> datas = new ArrayList<>();
-        final List<Exercicio> exercicios = new ArrayList<>(exercicioService.listAllExercicio());
-
-        for (Exercicio exercicio : exercicios) {
-            final Map<String, String> exercicioData = new WeakHashMap<>();
-            exercicioData.put("id", exercicio.get_id().toString());
-            exercicioData.put("Nome", exercicio.getNome());
-            exercicioData.put("Peso", Double.toString(exercicio.getPeso()));
-            datas.add(exercicioData);
-        }
-
-
-        return datas;
-    }
 
 }

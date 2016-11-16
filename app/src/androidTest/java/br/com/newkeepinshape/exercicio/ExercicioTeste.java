@@ -22,11 +22,11 @@ import br.com.newkeepinshape.infrastructure.persist.exercicio.ExercicioDaoIml;
 public class ExercicioTeste extends ConfigDBTestCase {
 
     private ExercicioRepository exercicioRepository;
-
     private final List<Exercicio> exerciciosList = new ArrayList<>(Arrays.asList(
-            Exercicio.valueOfExercico("Supino A", 30, 3,100),
-            Exercicio.valueOfExercico("Supino B", 35, 3, 110),
-            Exercicio.valueOfExercico("Supino C", 40, 3, 1120)));
+            Exercicio.valueOfExercico(null, "Supino A", 30, 3,100),
+            Exercicio.valueOfExercico(null, "Supino B", 35, 3, 110),
+            Exercicio.valueOfExercico(null, "Supino C", 40, 3, 1120)));
+
 
     @Before
     public void config() throws SQLException {
@@ -86,5 +86,6 @@ public class ExercicioTeste extends ConfigDBTestCase {
             assertExercicio(expected.get(i), actual.get(i));
         }
     }
+
 
 }

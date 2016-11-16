@@ -4,6 +4,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.Collection;
+import java.util.List;
+import java.util.Map;
 
 import br.com.newkeepinshape.domain.exercicio.Exercicio;
 import br.com.newkeepinshape.domain.exercicio.ExercicioRepository;
@@ -56,6 +58,10 @@ public class ExercicioService {
 
     public Exercicio returnExercicio(final Integer id) {
         return exercicioRepository.findExercicio(id);
+    }
+
+    public List<Map<String, String>> getExercicioCursor() {
+        return  exercicioRepository.getExerciciosCursor((List)listAllExercicio());
     }
 
     private void saveExercicio(final Exercicio exercicio) {

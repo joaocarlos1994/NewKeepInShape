@@ -2,6 +2,7 @@ package br.com.newkeepinshape.domain.exercicio;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -14,5 +15,6 @@ public interface ExercicioRepository {
     public int atualizarExercicio(final Exercicio exercicio);
     public Exercicio findExercicio(final Integer id);
     public List<Exercicio> listAllExercicio();
+    public List<Map<String, String>> getExerciciosCursor(final List<Exercicio> exercicios);
 
 }

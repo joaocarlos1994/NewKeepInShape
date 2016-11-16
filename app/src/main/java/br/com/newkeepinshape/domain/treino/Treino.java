@@ -25,7 +25,7 @@ public class Treino {
     private DiaSemana dia;
     @ForeignCollectionField
     private Collection<Exercicio> exercicios;
-    @DatabaseField
+    
     private double pontuacaoMaxima;
 
     private Treino (final String nome, final DiaSemana dia){

@@ -29,6 +29,10 @@
         <activity
             android:name=".activity.exercicio.ExercicioEspecificacao"
             android:label="@string/title_activity_exercicio"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.treino.TreinoRegister"
+            android:label="@string/title_activity_treino_register"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
