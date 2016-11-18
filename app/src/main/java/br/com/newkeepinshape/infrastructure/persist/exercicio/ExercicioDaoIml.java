@@ -22,65 +22,79 @@ import br.com.newkeepinshape.services.DatabaseHelperFactory;
  */
 public class ExercicioDaoIml extends BaseDaoImpl<Exercicio, Integer> implements ExercicioRepository {
 
-    public ExercicioDaoIml(Context context) throws SQLException {
+    public ExercicioDaoIml(final Context context) throws SQLException {
         super(Exercicio.class);
         setConnectionSource(DatabaseHelperFactory.getIntanceConnection(context));
         initialize();
     }
 
     @Override
-    public int createExercicio(Exercicio exercicio) {
+    public int createExercicio(final Exercicio exercicio) {
+
+        int i = 0;
+
         try {
-            return super.create(exercicio);
+             i = super.create(exercicio);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        throw new IllegalArgumentException("Erro ao criar Exercicio");
+
+        return i;
+
     }
 
     @Override
-    public int deleteExercicio(Integer id) {
+    public int deleteExercicio(final Integer id) {
+
+        int i = 0;
+
         try {
-            return super.deleteById(id);
+            i =  super.deleteById(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        throw new IllegalArgumentException("Erro ao deletar Exercicio");
+
+        return i;
     }
 
     @Override
     public int atualizarExercicio(Exercicio exercicio) {
+
+        int i = 0;
+
         try {
-            return super.update(exercicio);
+            i = super.update(exercicio);
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        throw new IllegalArgumentException("Erro ao atualizar Exercicio");
+        return i;
     }
 
     @Override
     public Exercicio findExercicio(Integer id) {
-        List exercicios;
+        Exercicio exercicio = null;
         try {
-            return super.queryForId(id);
+            exercicio = super.queryForId(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        throw new IllegalArgumentException("Erro ao buscar Exercicio");
+        return exercicio;
     }
 
     @Override
     public List<Exercicio> listAllExercicio() {
 
+        List<Exercicio> exercicios = null;
+
         try {
-            final List<Exercicio> exercicios = super.queryForAll();
+            exercicios = super.queryForAll();
             Collections.sort(exercicios);
             return Collections.unmodifiableList(exercicios);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        throw new IllegalArgumentException("Erro ao listar os Exercicios");
+        return exercicios;
     }
 
     @Override

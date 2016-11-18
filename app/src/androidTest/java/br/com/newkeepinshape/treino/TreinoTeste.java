@@ -1,7 +1,10 @@
 package br.com.newkeepinshape.treino;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ import br.com.newkeepinshape.util.DiaSemana;
 /**
  * Created by root on 16/11/16.
  */
-
+@RunWith(JUnit4.class)
 public class TreinoTeste extends ConfigDBTestCase {
 
     private TreinoRepository treinoRepository;
@@ -72,10 +75,10 @@ public class TreinoTeste extends ConfigDBTestCase {
     }
 
     private void assertTreino(final Treino expected, final Treino actual) {
-        assertEquals(expected.getNome(), actual.getNome());
-        assertEquals(expected.getDia().toString(), actual.getDia().toString());
-        assertEquals(expected.getPontuacaoMaxima(), actual.getPontuacaoMaxima());
-        assertEquals(expected.getExercicios().size(), actual.getExercicios().size());
+        Assert.assertEquals(expected.getNome(), actual.getNome());
+        Assert.assertEquals(expected.getDia().toString(), actual.getDia().toString());
+        Assert.assertEquals(0, expected.getPontuacaoMaxima(), actual.getPontuacaoMaxima());
+        Assert.assertEquals(expected.getExercicios().size(), actual.getExercicios().size());
 
     }
 

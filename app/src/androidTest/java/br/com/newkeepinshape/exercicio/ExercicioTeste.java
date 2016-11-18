@@ -3,6 +3,8 @@ package br.com.newkeepinshape.exercicio;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,7 +20,6 @@ import br.com.newkeepinshape.infrastructure.persist.exercicio.ExercicioDaoIml;
 /**
  * Created by root on 11/11/16.
  */
-
 public class ExercicioTeste extends ConfigDBTestCase {
 
     private ExercicioRepository exercicioRepository;
@@ -34,9 +35,7 @@ public class ExercicioTeste extends ConfigDBTestCase {
     }
 
     @Test
-    public void testSalvarExercicio() throws SQLException {
-
-        config();
+    public void salvarExercicio() throws SQLException {
 
         exercicioRepository.createExercicio(exerciciosList.get(0));
 
@@ -45,9 +44,8 @@ public class ExercicioTeste extends ConfigDBTestCase {
         assertExercicio(exerciciosList.get(0), exercicioActual);
     }
 
-    public void testRemoverExercicio() throws SQLException {
-
-        config();
+    @Test
+    public void removerExercicio() throws SQLException {
 
         exercicioRepository.createExercicio(exerciciosList.get(0));
         assertExercicio(exerciciosList.get(0), exercicioRepository.findExercicio(Integer.valueOf(1)));
@@ -57,9 +55,7 @@ public class ExercicioTeste extends ConfigDBTestCase {
     }
 
     @Test
-    public void testListaExercicio() throws SQLException {
-
-        config();
+    public void listaExercicio() throws SQLException {
 
         final List<Exercicio> exerciciosSave = new ArrayList<>();
 
