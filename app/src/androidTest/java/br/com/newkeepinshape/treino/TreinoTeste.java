@@ -27,9 +27,6 @@ public class TreinoTeste extends ConfigDBTestCase {
     private TreinoRepository treinoRepository;
     private final List<Treino> treinosData = new ArrayList<>();
 
-    public TreinoTeste(final TreinoRepository treinoRepository) {
-        this.treinoRepository = treinoRepository;
-    }
 
     @Before
     public void config() throws SQLException {
@@ -57,7 +54,7 @@ public class TreinoTeste extends ConfigDBTestCase {
         assertTreino(treino, treinoRepository.findTreino(Integer.valueOf(1)));
     }
 
-    @Test
+/*    @Test
     public void testDeletarTreino() {
     }
 
@@ -72,12 +69,12 @@ public class TreinoTeste extends ConfigDBTestCase {
     @Test
     public void testTodosTreinos() {
 
-    }
+    }*/
 
     private void assertTreino(final Treino expected, final Treino actual) {
         Assert.assertEquals(expected.getNome(), actual.getNome());
         Assert.assertEquals(expected.getDia().toString(), actual.getDia().toString());
-        Assert.assertEquals(0, expected.getPontuacaoMaxima(), actual.getPontuacaoMaxima());
+        Assert.assertEquals(expected.getPontuacaoMaxima(), actual.getPontuacaoMaxima(), 0);
         Assert.assertEquals(expected.getExercicios().size(), actual.getExercicios().size());
 
     }

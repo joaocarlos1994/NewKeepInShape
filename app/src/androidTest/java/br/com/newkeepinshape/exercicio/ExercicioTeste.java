@@ -1,5 +1,6 @@
 package br.com.newkeepinshape.exercicio;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +21,7 @@ import br.com.newkeepinshape.infrastructure.persist.exercicio.ExercicioDaoIml;
 /**
  * Created by root on 11/11/16.
  */
+@RunWith(JUnit4.class)
 public class ExercicioTeste extends ConfigDBTestCase {
 
     private ExercicioRepository exercicioRepository;
@@ -30,12 +32,13 @@ public class ExercicioTeste extends ConfigDBTestCase {
 
 
     @Before
-    public void config() throws SQLException {
+    public void configUp() throws SQLException {
         exercicioRepository = new ExercicioDaoIml(getContext());
     }
 
+
     @Test
-    public void salvarExercicio() throws SQLException {
+    public void salvarExercicio() {
 
         exercicioRepository.createExercicio(exerciciosList.get(0));
 
@@ -45,13 +48,25 @@ public class ExercicioTeste extends ConfigDBTestCase {
     }
 
     @Test
-    public void removerExercicio() throws SQLException {
-
-        exercicioRepository.createExercicio(exerciciosList.get(0));
+    public void removerExercicio() {
         assertExercicio(exerciciosList.get(0), exercicioRepository.findExercicio(Integer.valueOf(1)));
         Assert.assertEquals(0, 1, exercicioRepository.deleteExercicio(Integer.valueOf(1)));
         Assert.assertEquals(null, exercicioRepository.findExercicio(Integer.valueOf(1)));
+    }
 
+    @Test
+    public void atualizarExercicio() {
+
+        exercicioRepository.createExercicio(exerciciosList.get(0));
+        final Exercicio exercicio = exercicioRepository.findExercicio(Integer.valueOf(5));
+
+        final Exercicio exercicioExpected = Exercicio.valueOfExercico(exercicio.get_id(), "Supino Z", 35, 4, 150);
+        exercicioRepository.atualizarExercicio(exercicioExpected);
+
+        final Exercicio exercicioActual = exercicioRepository.findExercicio(Integer.valueOf(5));
+
+
+        assertExercicio(exercicioExpected,exercicioActual);
     }
 
     @Test
@@ -71,13 +86,13 @@ public class ExercicioTeste extends ConfigDBTestCase {
 
     private void assertExercicio(final Exercicio expected, final Exercicio actual) {
         Assert.assertEquals(expected.getNome(), actual.getNome());
-        Assert.assertEquals(0, expected.getPeso(), actual.getPeso());
-        Assert.assertEquals(0, expected.getPontuacao(), actual.getPontuacao());
-        Assert.assertEquals(0, expected.getPontuacao(), actual.getPontuacao());
+        Assert.assertEquals(expected.getPeso(), actual.getPeso(), 0);
+        Assert.assertEquals(expected.getPontuacao(), actual.getPontuacao(), 0);
+        Assert.assertEquals(expected.getPontuacao(), actual.getPontuacao(), 0);
     }
 
     private void assertExercicios(final List<Exercicio> expected, final List<Exercicio> actual) {
-        Assert.assertEquals(0, expected.size(), actual.size());
+        Assert.assertEquals(expected.size(), actual.size(), 0);
         for (int i = 0; i < expected.size(); i++) {
             assertExercicio(expected.get(i), actual.get(i));
         }
