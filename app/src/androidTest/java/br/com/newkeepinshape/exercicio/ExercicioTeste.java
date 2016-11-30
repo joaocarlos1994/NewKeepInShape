@@ -84,14 +84,14 @@ public class ExercicioTeste extends ConfigDBTestCase {
 
     }
 
-    private void assertExercicio(final Exercicio expected, final Exercicio actual) {
+    private static void assertExercicio(final Exercicio expected, final Exercicio actual) {
         Assert.assertEquals(expected.getNome(), actual.getNome());
         Assert.assertEquals(expected.getPeso(), actual.getPeso(), 0);
         Assert.assertEquals(expected.getPontuacao(), actual.getPontuacao(), 0);
         Assert.assertEquals(expected.getPontuacao(), actual.getPontuacao(), 0);
     }
 
-    private void assertExercicios(final List<Exercicio> expected, final List<Exercicio> actual) {
+    public static void assertExercicios(final List<Exercicio> expected, final List<Exercicio> actual) {
         Assert.assertEquals(expected.size(), actual.size(), 0);
         for (int i = 0; i < expected.size(); i++) {
             assertExercicio(expected.get(i), actual.get(i));

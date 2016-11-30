@@ -58,7 +58,7 @@ public class ExercicioDaoIml extends BaseDaoImpl<Exercicio, Integer> implements 
     }
 
     @Override
-    public int atualizarExercicio(Exercicio exercicio) {
+    public int atualizarExercicio(final Exercicio exercicio) {
 
         int i = 0;
 

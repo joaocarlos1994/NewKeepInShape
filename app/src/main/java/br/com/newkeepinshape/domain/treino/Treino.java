@@ -25,40 +25,41 @@ public class Treino {
     private DiaSemana dia;
     @ForeignCollectionField
     private Collection<Exercicio> exercicios;
-    
-    private double pontuacaoMaxima;
 
-    private Treino (final String nome, final DiaSemana dia){
+    private Treino (final Integer id, final String nome, final DiaSemana dia){
+        this._id = id;
         this.nome = nome;
         this.dia = dia;
         this.exercicios = new ArrayList<Exercicio>();
     }
 
-    public static Treino valeOfTreino(final String nome, final DiaSemana dia) {
-        return new Treino(nome, dia);
+    public static Treino valeOfTreino(final Integer id, final String nome, final DiaSemana dia) {
+        return new Treino(id, nome, dia);
     }
 
-    public Treino(){}
+    public Treino() {
+    }
 
     public void adicionarExercicio(final Exercicio exercicio){
         this.exercicios.add(exercicio);
-        atualizaPontucaoMaxima();
     }
 
     public void removeExercicio(final Exercicio exercicio){
         this.exercicios.remove(exercicio);
-        atualizaPontucaoMaxima();
     }
 
-    private void atualizaPontucaoMaxima(){
+    private double atualizaPontucaoMaxima(){
         double pontos = 0;
 
         for (Exercicio exercicio: this.exercicios) {
             pontos += exercicio.getPontuacao();
         }
-        this.pontuacaoMaxima = pontos;
+        return pontos;
     }
 
+    public Integer get_id() {
+        return _id;
+    }
 
     public String getNome() {
         return nome;
@@ -73,7 +74,7 @@ public class Treino {
     }
 
     public double getPontuacaoMaxima() {
-        return pontuacaoMaxima;
+        return atualizaPontucaoMaxima();
     }
 
 }

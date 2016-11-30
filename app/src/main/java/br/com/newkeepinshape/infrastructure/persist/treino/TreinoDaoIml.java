@@ -12,6 +12,7 @@ import br.com.newkeepinshape.domain.exercicio.Exercicio;
 import br.com.newkeepinshape.domain.exercicio.ExercicioRepository;
 import br.com.newkeepinshape.domain.treino.Treino;
 import br.com.newkeepinshape.domain.treino.TreinoRepository;
+import br.com.newkeepinshape.infrastructure.persist.exercicio.ExercicioDaoIml;
 import br.com.newkeepinshape.services.DatabaseHelperFactory;
 
 /**
@@ -20,17 +21,30 @@ import br.com.newkeepinshape.services.DatabaseHelperFactory;
 
 public class TreinoDaoIml extends BaseDaoImpl<Treino, Integer> implements TreinoRepository {
 
+    private final ExercicioRepository exercicioRepository;
+
     public TreinoDaoIml(final Context context) throws SQLException {
         super(Treino.class);
         setConnectionSource(DatabaseHelperFactory.getIntanceConnection(context));
         initialize();
+        this.exercicioRepository = new ExercicioDaoIml(context);
     }
 
 
     @Override
     public int createTreino(final Treino treino) {
         try {
-            return super.create(treino);
+
+            final int  i = super.create(treino);
+
+            for (final Exercicio eachExericio : treino.getExercicios()) {
+                final Exercicio exercicio = eachExericio;
+                eachExericio.setTreino(treino);
+                exercicioRepository.createExercicio(eachExericio);
+            }
+
+            return i;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -50,7 +64,22 @@ public class TreinoDaoIml extends BaseDaoImpl<Treino, Integer> implements Treino
     @Override
     public int atualizarTreino(final Treino treino) {
         try {
-            return super.update(treino);
+
+            final int  i = super.update(treino);
+
+            for (final Exercicio eachExericio : treino.getExercicios()) {
+
+                final Exercicio exercicio = Exercicio.valueOfExercico(null, eachExericio.getNome(), eachExericio.getPeso(),
+                        eachExericio.getQuantidade(), eachExericio.getPontuacao());
+
+                if (eachExericio.getTreino() == null) {
+                    exercicio.setTreino(treino);
+                    exercicioRepository.createExercicio(exercicio);
+                }
+            }
+
+            return i;
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

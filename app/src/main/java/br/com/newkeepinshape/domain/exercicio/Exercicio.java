@@ -63,6 +63,16 @@ public final class Exercicio implements Comparable {
         this.treino = treino;
     }
 
+    public void setTreino(final Treino treino){
+        if (treino != null) {
+            this.treino = treino;
+        }
+    }
+
+    public Treino getTreino() {
+        return treino;
+    }
+
     @Override
     public int compareTo(final Object object) {
         final Exercicio otherExercicio = (Exercicio) object;
